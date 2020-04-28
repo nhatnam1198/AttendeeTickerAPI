@@ -142,3 +142,6 @@ C:\Users\Asus\Desktop\Project\AttendeeTickerAPI\AttendeeTickerAPI\bin\Debug\netc
 C:\Users\Asus\Desktop\Project\AttendeeTickerAPI\AttendeeTickerAPI\bin\Debug\netcoreapp3.1\zh-Hans\Microsoft.CodeAnalysis.Workspaces.resources.dll
 C:\Users\Asus\Desktop\Project\AttendeeTickerAPI\AttendeeTickerAPI\bin\Debug\netcoreapp3.1\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
 C:\Users\Asus\Desktop\Project\AttendeeTickerAPI\AttendeeTickerAPI\obj\Debug\netcoreapp3.1\AttendeeTickerAPI.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Asus\Desktop\Project\AttendeeTickerAPI\AttendeeTickerAPI\bin\Debug\netcoreapp3.1\Microsoft.Azure.CognitiveServices.Vision.Face.dll
+C:\Users\Asus\Desktop\Project\AttendeeTickerAPI\AttendeeTickerAPI\bin\Debug\netcoreapp3.1\Microsoft.Rest.ClientRuntime.dll
+C:\Users\Asus\Desktop\Project\AttendeeTickerAPI\AttendeeTickerAPI\bin\Debug\netcoreapp3.1\Microsoft.Rest.ClientRuntime.Azure.dll
