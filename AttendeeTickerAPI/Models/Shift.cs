@@ -12,8 +12,8 @@ namespace AttendeeTickerAPI.Models
 
         public int ShiftID { get; set; }
         public string ShiftName { get; set; }
-        public TimeSpan? ShiftStart { get; set; }
-        public TimeSpan? ShiftEnd { get; set; }
+        public DateTime? ShiftStart { get; set; }
+        public DateTime? ShiftEnd { get; set; }
 
         public virtual ICollection<Event> Event { get; set; }
     }

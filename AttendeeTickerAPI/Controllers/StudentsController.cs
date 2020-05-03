@@ -44,6 +44,7 @@ namespace AttendeeTickerAPI.Controllers
             }
             return result.item;
         }
+        
 
         // PUT: api/Students/5
         [HttpPut("{id}")]

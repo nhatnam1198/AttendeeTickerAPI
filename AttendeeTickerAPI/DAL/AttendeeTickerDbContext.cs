@@ -143,8 +143,8 @@ namespace AttendeeTickerAPI.DAL
                 entity.Property(e => e.ShiftID).HasColumnName("ShiftID");
 
                 entity.Property(e => e.ShiftName).HasMaxLength(50);
-
-                entity.Property(e => e.ShiftStart).HasColumnType("time(0)");
+                entity.Property(e => e.ShiftStart).HasColumnType("dateTime");
+                entity.Property(e => e.ShiftEnd).HasColumnType("dateTime");
             });
 
             modelBuilder.Entity<Student>(entity =>
