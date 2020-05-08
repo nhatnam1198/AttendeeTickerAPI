@@ -57,7 +57,7 @@ namespace AttendeeTickerAPI
             }
 
             app.UseCors("EnableCORS");
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
             app.UseRouting();
             app.UseAuthorization();
 
