@@ -1,23 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Asus\\Desktop\\Project\\AttendeeTickerAPI\\AttendeeTickerAPI\\AttendeeTickerAPI.csproj": {}
+    "D:\\Baitaplon_API\\AttendeeTickerAPI\\AttendeeTickerAPI\\AttendeeTickerAPI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Asus\\Desktop\\Project\\AttendeeTickerAPI\\AttendeeTickerAPI\\AttendeeTickerAPI.csproj": {
+    "D:\\Baitaplon_API\\AttendeeTickerAPI\\AttendeeTickerAPI\\AttendeeTickerAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Asus\\Desktop\\Project\\AttendeeTickerAPI\\AttendeeTickerAPI\\AttendeeTickerAPI.csproj",
+        "projectUniqueName": "D:\\Baitaplon_API\\AttendeeTickerAPI\\AttendeeTickerAPI\\AttendeeTickerAPI.csproj",
         "projectName": "AttendeeTickerAPI",
-        "projectPath": "C:\\Users\\Asus\\Desktop\\Project\\AttendeeTickerAPI\\AttendeeTickerAPI\\AttendeeTickerAPI.csproj",
-        "packagesPath": "C:\\Users\\Asus\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Asus\\Desktop\\Project\\AttendeeTickerAPI\\AttendeeTickerAPI\\obj\\",
+        "projectPath": "D:\\Baitaplon_API\\AttendeeTickerAPI\\AttendeeTickerAPI\\AttendeeTickerAPI.csproj",
+        "packagesPath": "C:\\Users\\TH\\.nuget\\packages\\",
+        "outputPath": "D:\\Baitaplon_API\\AttendeeTickerAPI\\AttendeeTickerAPI\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Asus\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\TH\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -92,7 +89,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.201\\RuntimeIdentifierGraph.json"
         }
       }
     }

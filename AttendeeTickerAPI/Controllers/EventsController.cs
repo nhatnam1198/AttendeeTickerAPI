@@ -115,7 +115,8 @@ namespace AttendeeTickerAPI.Controllers
                       {                   
                           m.StudentID,
                           HoTen=m.StudentFirstName+m.StudentLastName,
-                          m.ClassName
+                          m.ClassName,
+                          q.SubjectClassID
 
                       };
             List<object> result = new List<object>();
