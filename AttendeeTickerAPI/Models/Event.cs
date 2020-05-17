@@ -10,6 +10,7 @@ namespace AttendeeTickerAPI.Models
         public int? SubjectClassID { get; set; }
         public DateTime? DateTime { get; set; }
         public int? TeacherID { get; set; }
+        public int? Status { get; set; }
 
         public virtual Shift Shift { get; set; }
         public virtual SubjectClass SubjectClass { get; set; }

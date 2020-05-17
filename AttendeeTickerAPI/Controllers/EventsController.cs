@@ -86,6 +86,8 @@ namespace AttendeeTickerAPI.Controllers
                       select new
                       {
                           s.SubjectClassName,
+                          s.SubjectClassID,
+                          q.Status,
                           q.DateTime,
                           g.ShiftName,
                           q.EventID

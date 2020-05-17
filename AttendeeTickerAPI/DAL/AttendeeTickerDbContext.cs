@@ -60,12 +60,9 @@ namespace AttendeeTickerAPI.DAL
 
             modelBuilder.Entity<AttendanceDetails>(entity =>
             {
-                entity.HasKey(e=>e.AttendanceID)
-                        .HasName("PK_AttendanceDetail");
-
-                entity.Property(e => e.AttendanceID)
-                    .HasColumnName("AttendanceID")
-                    .ValueGeneratedOnAdd();
+              
+                entity.Property(e => e.AttendanceDetailsID).HasColumnName("AttendanceDetailsID");
+                entity.Property(e => e.AttendanceID).HasColumnName("AttendanceID");
 
                 entity.Property(e => e.EventID).HasColumnName("EventID");
 

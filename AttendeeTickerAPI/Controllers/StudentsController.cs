@@ -45,7 +45,46 @@ namespace AttendeeTickerAPI.Controllers
             return result.item;
         }
         
-
+        [HttpGet("Event/{eventID}")]
+        public async Task<ActionResult<List<Student>>> GetAttendedStudentByEventId(int eventID)
+        {
+            var obj = from s in _context.AttendanceDetails
+                      join q in _context.Attendance on s.AttendanceID equals q.AttendanceID
+                      join g in _context.Student on q.StudentID equals g.StudentID
+                      where s.EventID == eventID
+                      select new
+                      {
+                          s.IsAttended,
+                          g.StudentID,
+                          g.StudentLastName,
+                          g.StudentFirstName
+                      };
+            List<Student> studentList = new List<Student>();
+            foreach(var item in obj)
+            {
+                if(item.IsAttended == true)
+                {
+                    studentList.Add(new Student()
+                    {
+                        StudentID = item.StudentID,
+                        StudentFirstName = item.StudentFirstName,
+                        StudentLastName = item.StudentLastName,
+                        IsDihoc = true 
+                    });
+                }
+                else 
+                {
+                    studentList.Add(new Student()
+                    {
+                        StudentID = item.StudentID,
+                        StudentFirstName = item.StudentFirstName,
+                        StudentLastName = item.StudentLastName,
+                        IsDihoc = false
+                    });
+                }
+            }
+            return Ok(studentList);
+        }
 
         // PUT: api/Students/5
         [HttpPut("{id}")]

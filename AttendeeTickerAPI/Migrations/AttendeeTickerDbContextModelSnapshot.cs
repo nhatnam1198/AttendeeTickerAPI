@@ -47,11 +47,15 @@ namespace AttendeeTickerAPI.Migrations
 
             modelBuilder.Entity("AttendeeTickerAPI.Models.AttendanceDetails", b =>
                 {
-                    b.Property<int>("AttendanceID")
+                    b.Property<int>("AttendanceDetailsID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnName("AttendanceID")
+                        .HasColumnName("AttendanceDetailsID")
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("AttendanceID")
+                        .HasColumnName("AttendanceID")
+                        .HasColumnType("int");
 
                     b.Property<int?>("EventID")
                         .HasColumnName("EventID")
@@ -60,8 +64,9 @@ namespace AttendeeTickerAPI.Migrations
                     b.Property<bool?>("IsAttended")
                         .HasColumnType("bit");
 
-                    b.HasKey("AttendanceID")
-                        .HasName("PK_AttendanceDetail");
+                    b.HasKey("AttendanceDetailsID");
+
+                    b.HasIndex("AttendanceID");
 
                     b.HasIndex("EventID");
 
@@ -127,6 +132,9 @@ namespace AttendeeTickerAPI.Migrations
 
                     b.Property<int?>("ShiftID")
                         .HasColumnName("ShiftID")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("Status")
                         .HasColumnType("int");
 
                     b.Property<int?>("SubjectClassID")

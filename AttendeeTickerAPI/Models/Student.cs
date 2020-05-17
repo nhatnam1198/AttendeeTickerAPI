@@ -20,6 +20,8 @@ namespace AttendeeTickerAPI.Models
         public string Nationality { get; set; }
         public string Phone { get; set; }
         public string PersonID { get; set; }
+        [NotMapped]
+        public bool IsDihoc { get; set; }
 
         public virtual ICollection<Attendance> Attendance { get; set; }
         public virtual ICollection<ComputerFile> ComputerFile { get; set; }

@@ -88,23 +88,72 @@ namespace AttendeeTickerAPI.Controllers
         [HttpPost("List")]
         public async Task<ActionResult<AttendanceDetails>> PostAttendanceDetailList(AttendanceDetailsDTO attendanceDetailsDTO)
         {
-            var attandanceDetails = from s in _context.Attendance
-                                    where s.SubjectClassID == attendanceDetailsDTO.SubjectClassID
-                                    select new AttendanceDetails()
-                                    {
-                                        AttendanceID = s.AttendanceID,
-                                        IsAttended = true
-                                    };
-            foreach (var attendedStudent in attandanceDetails)
+            List<AttendanceDetails> attendedStudentList = new List<AttendanceDetails>();
+            
+            var attendance = from s in _context.Attendance
+                             where s.SubjectClassID == attendanceDetailsDTO.SubjectClassID
+                             select new
+                             {
+                                 AttendanceID = s.AttendanceID,
+                                 StudentID = s.StudentID,
+                             };
+            var eventID = attendanceDetailsDTO.EventID;
+            // update event status
+            (from x in _context.Event where x.EventID == eventID select x).ToList().ForEach(x => x.Status = 1);
+            if (attendanceDetailsDTO.StudentList.Count != 0)
             {
-                _context.AttendanceDetails.Add(attendedStudent);
+                foreach (var s in attendance)
+                {
+                    foreach (var a in attendanceDetailsDTO.StudentList)
+                    {
+                        var attendedStudent = new AttendanceDetails()
+                        {
+                            AttendanceID = s.AttendanceID,
+                            EventID = eventID,
+                        };
+                        if (s.StudentID == a.StudentID)
+                        {
+                            attendedStudent.IsAttended = true;
+                        }
+                        else
+                        {
+                            attendedStudent.IsAttended = false;
+                        }
+                        _context.AttendanceDetails.Add(attendedStudent);
+                    }
+
+                }
             }
-            await _context.SaveChangesAsync();
+            else
+            {
+                foreach (var s in attendance)
+                {
+                    var attendedStudent = new AttendanceDetails()
+                    {
+                        AttendanceID = s.AttendanceID,
+                        EventID = eventID,
+                    };
+
+
+                    attendedStudent.IsAttended = false;
+
+                    _context.AttendanceDetails.Add(attendedStudent);
+                }
+
+            };
+            try
+            {
+                await _context.SaveChangesAsync();
+            }catch(Exception ex)
+            {
+
+            }
+            
             return Ok();
         }
-        
-    // DELETE: api/AttendanceDetails/5
-    [HttpDelete("{id}")]
+
+        // DELETE: api/AttendanceDetails/5
+        [HttpDelete("{id}")]
         public async Task<ActionResult<AttendanceDetails>> DeleteAttendanceDetails(int id)
         {
             var attendanceDetails = await _context.AttendanceDetails.FindAsync(id);

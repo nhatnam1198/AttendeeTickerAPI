@@ -9,6 +9,6 @@ namespace AttendeeTickerAPI.Models
     {
         public int EventID { get; set; }
         public int SubjectClassID { get; set; }
-        public List<Student> studentList { get; set; }
+        public List<Student> StudentList { get; set; }
     }
 }

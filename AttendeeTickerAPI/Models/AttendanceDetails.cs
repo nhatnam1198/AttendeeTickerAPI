@@ -5,6 +5,7 @@ namespace AttendeeTickerAPI.Models
 {
     public partial class AttendanceDetails
     {
+        public int AttendanceDetailsID { get; set; }
         public int AttendanceID { get; set; }
         public int? EventID { get; set; }
         public bool? IsAttended { get; set; }
