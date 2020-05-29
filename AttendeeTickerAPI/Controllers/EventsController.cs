@@ -90,6 +90,7 @@ namespace AttendeeTickerAPI.Controllers
                           q.Status,
                           q.DateTime,
                           g.ShiftName,
+                          g.ShiftID,
                           q.EventID
 
                       };

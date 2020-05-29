@@ -45,16 +45,40 @@ namespace AttendeeTickerAPI.Controllers
         // PUT: api/AttendanceDetails/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutAttendanceDetails(int id, AttendanceDetails attendanceDetails)
+        [HttpPut("Event/{id}")]
+        public async Task<IActionResult> PutAttendanceDetails(int id, AttendanceDetailsDTO attendanceDetails)
         {
-            if (id != attendanceDetails.AttendanceID)
+            if (id != attendanceDetails.EventID)
             {
                 return BadRequest();
             }
 
-            _context.Entry(attendanceDetails).State = EntityState.Modified;
+            var attandance = from s in _context.Attendance
+                             where s.SubjectClassID == attendanceDetails.SubjectClassID
+                             select new
+                             {
+                                 AttendanceID = s.AttendanceID,
+                                 StudentID = s.StudentID
+                             };
+            foreach(var s in attandance)
+            {
+                var attendedStudent = _context.AttendanceDetails.FirstOrDefault(x => x.AttendanceID == s.AttendanceID && x.EventID == id );
+                //var  attendedStudent = new AttendanceDetails()
+                //{
 
+                //    AttendanceID = s.AttendanceID,
+                //    EventID = attendanceDetails.EventID,
+                //    IsAttended = false
+                //};
+                attendedStudent.IsAttended = false;
+                foreach (var p in attendanceDetails.StudentList)
+                {
+                    if (s.StudentID == p.StudentID)
+                    {
+                        attendedStudent.IsAttended = true;
+                    }
+                }
+            }
             try
             {
                 await _context.SaveChangesAsync();
@@ -100,47 +124,26 @@ namespace AttendeeTickerAPI.Controllers
             var eventID = attendanceDetailsDTO.EventID;
             // update event status
             (from x in _context.Event where x.EventID == eventID select x).ToList().ForEach(x => x.Status = 1);
-            if (attendanceDetailsDTO.StudentList.Count != 0)
+            foreach (var s in attendance)
             {
-                foreach (var s in attendance)
+                var attendedStudent = new AttendanceDetails()
                 {
-                    foreach (var a in attendanceDetailsDTO.StudentList)
+                    AttendanceID = s.AttendanceID,
+                    EventID = eventID,
+                    IsAttended = false
+                };
+                foreach (var a in attendanceDetailsDTO.StudentList)
+                {
+                    
+                    if (s.StudentID == a.StudentID)
                     {
-                        var attendedStudent = new AttendanceDetails()
-                        {
-                            AttendanceID = s.AttendanceID,
-                            EventID = eventID,
-                        };
-                        if (s.StudentID == a.StudentID)
-                        {
-                            attendedStudent.IsAttended = true;
-                        }
-                        else
-                        {
-                            attendedStudent.IsAttended = false;
-                        }
-                        _context.AttendanceDetails.Add(attendedStudent);
+                        attendedStudent.IsAttended = true;
                     }
-
+                    
                 }
+                _context.AttendanceDetails.Add(attendedStudent);
             }
-            else
-            {
-                foreach (var s in attendance)
-                {
-                    var attendedStudent = new AttendanceDetails()
-                    {
-                        AttendanceID = s.AttendanceID,
-                        EventID = eventID,
-                    };
-
-
-                    attendedStudent.IsAttended = false;
-
-                    _context.AttendanceDetails.Add(attendedStudent);
-                }
-
-            };
+            
             try
             {
                 await _context.SaveChangesAsync();
@@ -149,7 +152,7 @@ namespace AttendeeTickerAPI.Controllers
 
             }
             
-            return Ok();
+            return CreatedAtAction("CreateAttendanceDetails", new { id = attendanceDetailsDTO.EventID }, attendanceDetailsDTO.EventID);
         }
 
         // DELETE: api/AttendanceDetails/5

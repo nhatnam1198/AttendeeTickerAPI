@@ -25,7 +25,8 @@ namespace AttendeeTickerAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<SubjectClass>>> GetSubjectClass()
         {
-            return await _context.SubjectClass.ToListAsync();
+            var result = await _context.SubjectClass.ToListAsync();
+            return result;
         }
 
         // GET: api/SubjectClasses/5
